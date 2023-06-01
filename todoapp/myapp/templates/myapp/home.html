@@ -1,0 +1,87 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+	body{
+		background-color: #9e6c6c;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 5px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color: #6BA3E8;
+	}
+
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color: #cc6c38;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+
+
+</style>
+
+
+<h1 class="text-center">Todo List</h1>
+<div class="center-column">
+    
+    <form class="form-group" action="" method="post">
+        {% csrf_token %}
+        {{forms.title}}
+        <input class="btn-danger" type="submit">
+    </form>
+    <hr>
+
+    <div class="todo-list">
+        {% for task in tasks %}
+        <div class="item-row">
+
+                <a class="btn btn-sm btn-success" href="{% url 'update-task' task.id %}">update task
+					{% if task.complete == True %}
+					 	{{forms.complete}}
+					{% endif %}
+					
+				</a> 
+    
+				<a class="btn btn-success mx-4" href="{% url 'delete-task' task.id %}">deletetask</a>
+                {% if task.complete == True %}
+                <strike>{{task.title}}</strike>
+                {% else %}
+                <span>{{task.title}}</span>
+                {% endif %}
+                <hr>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

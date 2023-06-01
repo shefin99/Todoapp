@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block title %}
+   Update Task
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body{
+		background-color: #8293b9;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+    .center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+</style>
+
+
+
+
+<h1 class="text-center text-white">Update your task</h1>
+
+<div class="center-column">
+    <form action="" method="post">
+        {% csrf_token %}
+    
+        {{forms}}
+        <input type="submit">
+    </form>
+</div>
+
+{% endblock %}
